@@ -13,11 +13,13 @@ async def scrape_bing_news():
 
         # Scroll to the bottom of the page to load more content
         previous_height = await page.evaluate('document.body.scrollHeight')
+        print("Here is the previous height of the   search page : ")
+        print(previous_height)
         while True:
             # Scroll down
             await page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
             # Wait for new content to load
-            await page.wait_for_timeout(2000)  # Adjust time as needed
+            await page.wait_for_timeout(2000)  # Here is a timeout  for the new content to load
 
             # Get the new height and check if the page has stopped loading
             new_height = await page.evaluate('document.body.scrollHeight')
